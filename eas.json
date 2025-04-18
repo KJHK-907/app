@@ -1,0 +1,40 @@
+{
+  "cli": {
+    "version": ">= 0.52.0",
+    "appVersionSource": "remote",
+    "promptToConfigurePushNotifications": false
+  },
+  "build": {
+    "preview": {
+      "distribution": "internal"
+    },
+    "development": {
+      "distribution": "internal",
+      "developmentClient": true,
+      "env": {
+        "APP_VARIANT": "development"
+      },
+      "ios": {
+        "simulator": true
+      }
+    },
+    "production": {
+      "android": {
+        "buildType": "app-bundle"
+      },
+      "releaseChannel": "production",
+      "autoIncrement": true
+    }
+  },
+  "submit": {
+    "production": {
+      "android": {
+        "track": "internal"
+      },
+      "ios": {
+        "appleId": "EXPO_APPLE_ID",
+        "companyName": "KJHK 90.7 FM"
+      }
+    }
+  }
+}
