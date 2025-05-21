@@ -50,9 +50,9 @@ export const nowPlayingAtom = atom<NowPlayingStatus>({
   ...(Constants.DefaultSongStatus as NowPlayingStatus),
 });
 
-const serverIP = "202.61.248.176";
+const serverIP = "api.kjhk.org";
 const targetEndpoint = "metadata";
-const websocketURL = `ws://${serverIP}/api/?target=${targetEndpoint}`;
+const websocketURL = `wss://${serverIP}/api/?target=${targetEndpoint}`;
 
 export type RawNowPlaying = {
   track: string;
