@@ -4,7 +4,7 @@ import { HSLColorObject, composePalette } from "./colors";
 
 export const Constants = {
   NowPlayingAPI: "https://kjhk.org/api/now-playing.php?q=",
-  StreamURI: "https://edge.mixlr.com/channel/ofifl",
+  StreamURI: "https://stream.kjhk.org/music",
   StreamStatusAPI: "https://api.mixlr.com/users/kjhk",
   BottomSheetHeight: 67.5,
   DefaultSongStatus: {
