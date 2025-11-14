@@ -40,6 +40,17 @@ export default (): ExpoConfig => ({
         backgroundColor: "#00000080",
       },
     ],
+    [
+      "expo-build-properties",
+      {
+        android: {
+          minSdkVersion: 24,
+          compileSdkVersion: 35,
+          targetSdkVersion: 35,
+          buildToolsVersion: "35.0.0",
+        },
+      },
+    ],
   ],
   experiments: {
     tsconfigPaths: true,
