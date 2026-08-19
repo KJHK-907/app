@@ -19,7 +19,7 @@ export default (): ExpoConfig => ({
     package: IS_DEV ? "org.kjhk.app.dev" : "org.kjhk.kjhk",
   },
   ios: {
-    bundleIdentifier: "org.KJHK.KJHK",
+    bundleIdentifier: IS_DEV ? "org.KJHK.KJHK.dev" : "org.KJHK.KJHK",
     infoPlist: {
       UIBackgroundModes: ["audio"],
     },

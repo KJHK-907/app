@@ -18,6 +18,16 @@
         "simulator": true
       }
     },
+    "development-device": {
+      "distribution": "internal",
+      "developmentClient": true,
+      "env": {
+        "APP_VARIANT": "development"
+      },
+      "ios": {
+        "simulator": false
+      }
+    },
     "production": {
       "android": {
         "buildType": "app-bundle"

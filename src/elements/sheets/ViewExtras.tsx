@@ -17,10 +17,18 @@ import {
   Radio,
   Sun,
 } from "@tamagui/lucide-icons";
+import { Toast, useToastController, useToastState } from "@tamagui/toast";
 import { useNowPlaying } from "common/atoms";
 import { themeAtom } from "common/const";
 import { useAtom } from "jotai";
-import { forwardRef, useCallback, useMemo, useRef, type FC } from "react";
+import {
+  forwardRef,
+  useCallback,
+  useMemo,
+  useRef,
+  type FC,
+  type ForwardedRef,
+} from "react";
 import { Linking } from "react-native";
 import { RectButton } from "react-native-gesture-handler";
 import Animated, {
@@ -40,8 +48,11 @@ import {
   useTheme,
 } from "tamagui";
 
-import { Toast, useToastController, useToastState } from "@tamagui/toast";
 import { Song } from "../visuals/Song";
+
+type ViewExtraProps = {
+  onOpenSchedule: () => void;
+};
 
 const links = [
   // {
@@ -49,11 +60,6 @@ const links = [
   //   icon: PhoneCall,
   //   url: "tel:7858644747",
   // },
-  {
-    name: "Air Schedule",
-    icon: Calendar,
-    url: "https://kjhk.org/web/program-schedule/",
-  },
   {
     name: "Donate",
     icon: HeartPulse,
@@ -66,7 +72,10 @@ const links = [
   },
 ];
 
-export const ViewExtra = forwardRef<BottomSheetModal>((_, ref) => {
+const ViewExtraContent = (
+  { onOpenSchedule }: ViewExtraProps,
+  ref: ForwardedRef<BottomSheetModal>,
+) => {
   const sleepTimerSheetRef = useRef<BottomSheetModal>(null);
 
   const [isDarkMode, setIsDarkMode] = useAtom(themeAtom);
@@ -193,6 +202,24 @@ export const ViewExtra = forwardRef<BottomSheetModal>((_, ref) => {
               </ListItem>
             </RectButton>
 
+            {/* Air Schedule */}
+            <RectButton
+              rippleColor={rippleColor}
+              underlayColor={color4}
+              activeOpacity={0.1}
+              onPress={onOpenSchedule}
+            >
+              <ListItem
+                color={color3}
+                transparent
+                scaleIcon={1.125}
+                icon={Calendar}
+                iconAfter={<ChevronRight color={color4} />}
+              >
+                Air Schedule
+              </ListItem>
+            </RectButton>
+
             {/* Links */}
             {links.map(({ name, icon, url }) => (
               <RectButton
@@ -306,7 +333,9 @@ export const ViewExtra = forwardRef<BottomSheetModal>((_, ref) => {
       </BottomSheetModal>
     </BottomSheetModalProvider>
   );
-});
+};
+
+export const ViewExtra = forwardRef(ViewExtraContent);
 
 const SheetHandle: FC<BottomSheetHandleProps> = ({ animatedIndex }) => {
   const theme = useTheme();

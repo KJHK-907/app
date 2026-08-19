@@ -1,4 +1,4 @@
-import BottomSheet from "@gorhom/bottom-sheet";
+import BottomSheet, { BottomSheetModal } from "@gorhom/bottom-sheet";
 import {
   useBottomSheetOpen,
   useNowPlaying,
@@ -50,6 +50,8 @@ import {
   useTheme,
 } from "tamagui";
 
+import { Schedule } from "./Schedule";
+
 type Position = { x: number; y: number };
 
 SplashScreen.preventAutoHideAsync();
@@ -64,7 +66,7 @@ export const Home = () => {
   const color0 = theme.color6?.get();
   const color2 = theme.color2?.get();
 
-  const viewExtraRef = useRef<BottomSheet>();
+  const viewExtraRef = useRef<BottomSheetModal>();
   const musicLogsRef = useRef<BottomSheet>();
   const lyricsSheetRef = useRef<BottomSheet>();
 
@@ -100,6 +102,7 @@ export const Home = () => {
   const animated = useSharedValue(0);
 
   const [imagePos, setImagePos] = useState<Position>({ x: 0, y: 0 });
+  const [scheduleVisible, setScheduleVisible] = useState(false);
 
   const imageSize = screenW >= 760 ? screenW * 0.75 : screenW * 0.875;
   const imageScale = 52 / imageSize;
@@ -261,7 +264,18 @@ export const Home = () => {
             animation={animated}
           />
 
-          <ViewExtra ref={viewExtraRef} />
+          <ViewExtra
+            ref={viewExtraRef}
+            onOpenSchedule={() => {
+              viewExtraRef.current?.dismiss();
+              setScheduleVisible(true);
+            }}
+          />
+
+          <Schedule
+            visible={scheduleVisible}
+            onClose={() => setScheduleVisible(false)}
+          />
 
           <LyricsSheet ref={lyricsSheetRef} />
         </Stack>

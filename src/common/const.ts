@@ -3,6 +3,9 @@ import { atomWithStorage, createJSONStorage } from "jotai/utils";
 import { HSLColorObject, composePalette } from "./colors";
 
 export const Constants = {
+  ScheduleAPI: process.env.EXPO_PUBLIC_SCHEDULE_API_URL ?? "",
+  ScheduleCacheKey: "schedule-cache-v1",
+  ScheduleCacheVersion: 1,
   NowPlayingAPI: "https://kjhk.org/api/now-playing.php?q=",
   StreamURI: "https://stream.kjhk.org/music",
   StreamStatusAPI: "https://api.mixlr.com/users/kjhk",
